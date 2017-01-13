@@ -27,7 +27,7 @@ public class CutScene : MonoBehaviour
 
     private int indiceMens = 0;
     private float nextFire;
-
+    
     public Transform cameraCutScene;
     public Transform lastCameraTrans;
 
@@ -46,7 +46,7 @@ public class CutScene : MonoBehaviour
     {
         if (StartCutScene && !StartTalk)
         {
-            Adam.GetComponent<MoveChar>().enabled = false;
+            Adam.GetComponent<MoveChar>().PodeMover = false;
             float distance = Vector3.Distance(Adam.transform.position, Laura.transform.position);
 
             if (distance < 1f)
@@ -71,9 +71,6 @@ public class CutScene : MonoBehaviour
                 animator.SetFloat("Axis", 0f);
                 animator.SetBool("IsStopped", true);
                 StartTalk = true;
-                Camera.allCameras[0].GetComponent<CameraLook>().enabled = false;
-                Camera.allCameras[0].transform.position = cameraCutScene.position;
-                Camera.allCameras[0].transform.rotation = cameraCutScene.rotation;
             }
         }
 
@@ -173,11 +170,11 @@ public class CutScene : MonoBehaviour
                         _nameChar.text = "";
                         _mensagem.text = "";
                         CanvMens.color = CorDefault;
-                        CanvNome.color = Color.clear; ;
-                        Camera.allCameras[0].GetComponent<CameraLook>().enabled = true;
-                        Camera.allCameras[0].transform.position = lastCameraTrans.position;
-                        Camera.allCameras[0].transform.rotation = lastCameraTrans.rotation;
-                        Adam.GetComponent<MoveChar>().enabled = true;
+                        CanvNome.color = Color.clear;
+                        Adam.GetComponent<MoveChar>().PodeMover = true;
+                        //Camera.allCameras[0].enabled = true;
+                        Camera.allCameras[1].enabled = false;
+                        //Camera.allCameras[0].GetComponent<SimpleSmoothMouseLook>().isEnabled = true;                        
                         StartTalk = false;
                         MensagemUI.SetActive(false);
                         Destroy(this);

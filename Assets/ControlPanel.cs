@@ -40,7 +40,8 @@ public class ControlPanel : MonoBehaviour
     void OnEnable()
     {
         StartMenuTime = Time.time;
-        musicaAmbiente.volume = 0.05f;
+        if(musicaAmbiente != null)
+            musicaAmbiente.volume = 0.05f;
     }
 
     // Update is called once per frame
@@ -106,7 +107,8 @@ public class ControlPanel : MonoBehaviour
         terminalControl.AcabouSairMenu = true;
         scriptMove.PodeMover = true;
         _objectThis.SetActive(false);
-        musicaAmbiente.volume = 0.32f;
+        if(musicaAmbiente != null)
+            musicaAmbiente.volume = 0.32f;
         if (EstadoJogo.HasPenDrive2)
         {
             Destroy(_Trigger);
