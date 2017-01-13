@@ -27,9 +27,6 @@ public class CutScene : MonoBehaviour
 
     private int indiceMens = 0;
     private float nextFire;
-    
-    public Transform cameraCutScene;
-    public Transform lastCameraTrans;
 
     void Awake()
     {
@@ -172,9 +169,6 @@ public class CutScene : MonoBehaviour
                         CanvMens.color = CorDefault;
                         CanvNome.color = Color.clear;
                         Adam.GetComponent<MoveChar>().PodeMover = true;
-                        //Camera.allCameras[0].enabled = true;
-                        Camera.allCameras[1].enabled = false;
-                        //Camera.allCameras[0].GetComponent<SimpleSmoothMouseLook>().isEnabled = true;                        
                         StartTalk = false;
                         MensagemUI.SetActive(false);
                         Destroy(this);

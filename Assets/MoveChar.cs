@@ -65,8 +65,9 @@ public class MoveChar : MonoBehaviour {
 	{
         if (PodeMover && controller.isGrounded) //movimentacao tank
         {
-            mouseLook.isEnabled = true;
-           
+            mouseLook.lockCursor = true;
+            mouseLook.enabled = true;
+
             axis = Input.GetAxis("Vertical");
             axisX = Input.GetAxis("Horizontal");
 
@@ -137,7 +138,9 @@ public class MoveChar : MonoBehaviour {
             animator.SetFloat("Axis", 0f);
             animator.SetBool("IsStopped", true);
             timeDelayRun = 0f;
-            //mouseLook.isEnabled = false;            
+            //mouseLook.isEnabled = false;
+            mouseLook.lockCursor = false;
+            mouseLook.enabled = false;     
         }
 
         //gravidade, para o player cair		

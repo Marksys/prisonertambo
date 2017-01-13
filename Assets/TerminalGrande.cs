@@ -10,6 +10,7 @@ public class TerminalGrande : MonoBehaviour {
 	public AudioClip plimTerminal;	
 	public MoveChar moveChar;
 	public bool AcabouSairMenu = false;
+    public Camera cameraHacking;
 	
 	// Use this for initialization
 	void Start () {
@@ -43,7 +44,9 @@ public class TerminalGrande : MonoBehaviour {
 				MensagemUI.SetActive(false);
 				CrackerUI.SetActive(true);
 				moveChar.PodeMover = false;
-				AudioSource.PlayClipAtPoint(plimTerminal, transform.position, 0.7f);
+                cameraHacking.enabled = true;
+
+                AudioSource.PlayClipAtPoint(plimTerminal, transform.position, 0.7f);
 			}
 		}
 	}
@@ -51,6 +54,6 @@ public class TerminalGrande : MonoBehaviour {
 	public void OnTriggerExit(Collider other)
 	{
 		MensagemUI.SetActive(false);
-		_textoMensagem.text = "";
+        _textoMensagem.text = "";
 	}
 }

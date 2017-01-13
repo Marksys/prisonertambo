@@ -29,6 +29,7 @@ public class ControlPanel : MonoBehaviour
     public GameObject _Trigger;
     public AudioSource musicaAmbiente;
     public AudioClip SolvedSound;
+    public Camera cameraHacking;
 
     // Use this for initialization
     void Start()
@@ -106,6 +107,7 @@ public class ControlPanel : MonoBehaviour
         eventSystem.SetSelectedGameObject(null);
         terminalControl.AcabouSairMenu = true;
         scriptMove.PodeMover = true;
+        cameraHacking.enabled = false;
         _objectThis.SetActive(false);
         if(musicaAmbiente != null)
             musicaAmbiente.volume = 0.32f;
