@@ -9,9 +9,9 @@ public class DropGrab : MonoBehaviour
     {
         if (grabDrop.grabbedObject != null)
         {
+            grabDrop.grabbedObject.GetComponent<Rigidbody>().mass = 2f;
             grabDrop.grabbedObject.GetComponent<Rigidbody>().Sleep();
             grabDrop.grabbedObject = null;
-        }
-        
+        }        
     }    
 }

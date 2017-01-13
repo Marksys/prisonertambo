@@ -11,7 +11,7 @@ public class Hit : MonoBehaviour {
 	{	
 		if(!IsDestroyed && (collision.gameObject.tag == "Push"))
 		{
-			if(collision.gameObject.transform.position.y > (transform.position.y+0.2f)) //verifica se a posicao eh acima do caixa
+            if (collision.gameObject.transform.position.y > (transform.position.y + 0.5f)) //verifica se a posicao eh acima do caixa
 			{
 				DestroyIt();
 			}

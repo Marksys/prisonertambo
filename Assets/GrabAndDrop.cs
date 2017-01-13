@@ -28,7 +28,8 @@ public class GrabAndDrop : MonoBehaviour {
             return;
 
         grabbedObject = grabObject;
-
+        grabObject.GetComponent<Rigidbody>().mass = 0.01f;
+        grabbedObject.transform.Translate(0, 0.15f, 0);
         grabbedObjectSize = grabObject.GetComponent<Renderer>().bounds.size.magnitude;
     }
 
@@ -46,8 +47,10 @@ public class GrabAndDrop : MonoBehaviour {
             return;
 
         if (grabbedObject.GetComponent<Rigidbody>() != null)
+        {
+            grabbedObject.GetComponent<Rigidbody>().mass = 2f;
             grabbedObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
-
+        }
         grabbedObject = null;
     }
    
@@ -59,8 +62,6 @@ public class GrabAndDrop : MonoBehaviour {
                 TryGrabObject(GetMouseHoverObject(0.85f));
             else
                 DropObject();
-
-            print(grabbedObject);
         }
 
         if (grabbedObject != null)
@@ -68,13 +69,11 @@ public class GrabAndDrop : MonoBehaviour {
             if (GetComponent<FixedJoint>().connectedBody == null)
             {
                 grabbedObject.transform.LookAt(gameObject.transform);
+                grabbedObject.GetComponent<Rigidbody>().Sleep();
 
-                var dir = grabbedObject.transform.forward; // get the hit direction
-                //dir.y = 0; // consider only the horizontal direction
+                var dir = grabbedObject.transform.forward; // get the hit direction         
                 gameObject.GetComponentInParent<CharacterController>().SimpleMove(10f * dir.normalized);
-                //Vector3 newPosition = gameObject.transform.position + transform.forward * grabbedObjectSize / 2 + transform.up * 0.5f;
-                //grabbedObject.transform.position = newPosition;
-                //grabbedObject.GetComponent<Rigidbody>().MovePosition(newPosition);
+                
                 GetComponent<FixedJoint>().connectedBody = grabbedObject.GetComponent<Rigidbody>();
             }
         }
